@@ -31,6 +31,6 @@ export const CONFIG = {
     decoTravel: 'https://raw.githubusercontent.com/maeleck/johnnyportfolio/refs/heads/main/assets/deco-travel.jpg',
     decoCooking2: 'https://raw.githubusercontent.com/maeleck/johnnyportfolio/refs/heads/main/assets/deco-cooking2.jpg',
     decoMountain: 'https://raw.githubusercontent.com/maeleck/johnnyportfolio/refs/heads/main/assets/deco-mountain.jpg',
-    decoASL: 'https://raw.githubusercontent.com/maeleck/johnnyportfolio/refs/heads/main/assets/deco-asl.jpg',
+    decoASL: 'https://raw.githubusercontent.com/maeleck/johnnyportfolio/refs/heads/main/assets/deco-asl.png',
   }
 };
