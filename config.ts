@@ -18,7 +18,7 @@ export const CONFIG = {
 
   // Centralized Image URLs
   IMAGES: {
-    about: 'https://images.unsplash.com/photo-1521119989659-a83eee488004?q=80&w=800&auto=format&fit=crop',
+    about: 'https://drive.google.com/file/d/19Jnb0Z8IDSGOvZ-b3tC6bBraNrfybk7u/view?usp=drive_link',
     resume: 'https://images.unsplash.com/photo-1593348625614-5db95c651754?q=80&w=800&auto=format&fit=crop',
     biology: 'https://images.unsplash.com/photo-1629897334495-24d19548814c?q=80&w=800&auto=format&fit=crop',
     software: 'https://images.unsplash.com/photo-1555099962-4199c345e546?q=80&w=800&auto=format&fit=crop',
