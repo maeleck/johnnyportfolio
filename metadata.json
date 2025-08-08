@@ -1,0 +1,5 @@
+{
+  "name": "Interactive Portfolio Board",
+  "description": "An interactive, pannable portfolio website designed to look like a large board with pinned documents for different sections like bio, resume, and projects.",
+  "requestFramePermissions": []
+}
