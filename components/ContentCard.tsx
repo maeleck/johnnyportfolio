@@ -34,7 +34,7 @@ export const ContentCard: React.FC<ContentCardProps> = ({ section, onClick, isAc
           <PushPinIcon />
           
           <div className="w-full h-1/2 flex-shrink-0">
-            <img src={CONFIG.IMAGES[section.imageKey]} alt={`${section.title} placeholder image`} className="w-full h-full object-cover"/>
+            <img src={CONFIG.IMAGES[section.imageKey]} alt={`A decorative image for the ${section.title} section`} className="w-full h-full object-cover"/>
           </div>
 
           <div className="p-8 flex flex-col flex-grow justify-between">
