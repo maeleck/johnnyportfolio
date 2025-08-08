@@ -19,5 +19,13 @@ export interface PortfolioSection {
     items?: string[];
   };
   links: Link[];
-  imageUrl: string;
+  imageKey: string;
+}
+
+export interface PhotoDecoration {
+  imageKey: string;
+  position: { top: string; left: string };
+  rotation: number;
+  size: { width: string; height: string };
+  alt: string;
 }

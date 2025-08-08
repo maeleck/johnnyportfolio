@@ -2,7 +2,8 @@
 import React, { useEffect } from 'react';
 import { TransformWrapper, TransformComponent, useControls } from 'react-zoom-pan-pinch';
 import { ContentCard } from './ContentCard';
-import { SECTIONS } from '../constants';
+import { PhotoCard } from './PhotoCard';
+import { SECTIONS, PHOTO_DECORATIONS } from '../constants';
 import { WoodGrainBackground } from './WoodGrainBackground';
 
 // This helper component grabs the control functions from the context and passes them up
@@ -44,6 +45,11 @@ export const Board: React.FC<BoardProps> = ({ setControls, activeSectionId, onCa
         >
           <div className="relative" style={{ width: `${BOARD_WIDTH}px`, height: `${BOARD_HEIGHT}px` }}>
             <WoodGrainBackground width={BOARD_WIDTH} height={BOARD_HEIGHT} />
+            
+            {PHOTO_DECORATIONS.map((photo, index) => (
+              <PhotoCard key={`photo-${index}`} photo={photo} />
+            ))}
+
             {SECTIONS.map((section) => (
               <ContentCard
                 key={section.id}

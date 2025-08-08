@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { UserIcon, DocumentTextIcon, BeakerIcon, CodeBracketIcon } from './components/Icons';
-import type { PortfolioSection } from './types';
+import type { PortfolioSection, PhotoDecoration } from './types';
 import { CONFIG } from './config';
 
 export const SECTIONS: PortfolioSection[] = [
@@ -11,7 +11,7 @@ export const SECTIONS: PortfolioSection[] = [
     summary: "A Deaf, tech-oriented developer with a passion for biology, video games, and exploring the world. From Vietnam to Chicago, my journey is fueled by a love for learning and creation.",
     icon: <UserIcon className="w-12 h-12 text-sky-700" />,
     position: { top: '10%', left: '15%' },
-    imageUrl: 'https://placehold.co/600x400/0ea5e9/ffffff?text=About+Me',
+    imageKey: 'about',
     details: {
       title: 'About Me',
       description: "Born in Vietnam and raised in the vibrant city of Chicago, my life has been a journey of bridging worlds. As a Deaf individual, I've always been drawn to the universal languages of technology and science. This led me to a unique intersection of interests, from coding creative software and video games to delving into the complexities of biology.",
@@ -32,7 +32,7 @@ export const SECTIONS: PortfolioSection[] = [
     summary: 'A summary of my academic journey and professional experience, from epigenetic research to AI applications in healthcare.',
     icon: <DocumentTextIcon className="w-12 h-12 text-emerald-700" />,
     position: { top: '10%', left: '55%' },
-    imageUrl: 'https://placehold.co/600x400/10b981/ffffff?text=Resume',
+    imageKey: 'resume',
     details: {
       title: 'Professional Resume',
       description: "A dynamic scientist and software engineer with a deep background in biological sciences and a current focus on applying AI to healthcare data. My experience spans from foundational epigenetic research to developing full-stack applications for pharmacovigilance using EHR data.",
@@ -53,7 +53,7 @@ export const SECTIONS: PortfolioSection[] = [
     summary: 'A collection of peer-reviewed articles focusing on epigenetic mechanisms and chromatin dynamics.',
     icon: <BeakerIcon className="w-12 h-12 text-purple-700" />,
     position: { top: '55%', left: '55%' },
-    imageUrl: 'https://placehold.co/600x400/8b5cf6/ffffff?text=Biology',
+    imageKey: 'biology',
     details: {
       title: 'Research & Publications',
       description: "My research focuses on the epigenetic regulation of gene expression, particularly in the context of cellular regeneration and disease. Below is a selection of my contributions to the field.",
@@ -81,7 +81,7 @@ export const SECTIONS: PortfolioSection[] = [
     summary: 'A collection of creative projects, including educational games for learning languages and my solutions to coding challenges.',
     icon: <CodeBracketIcon className="w-12 h-12 text-amber-700" />,
     position: { top: '55%', left: '15%' },
-    imageUrl: 'https://placehold.co/600x400/f59e0b/ffffff?text=Software',
+    imageKey: 'software',
     details: {
       title: 'Apps & Creations',
       description: "I love building software that is both functional and fun. My projects often focus on education, accessibility, and interactive design. Here are a few things I've created.",
@@ -99,4 +99,49 @@ export const SECTIONS: PortfolioSection[] = [
       { label: 'View Leetcode Profile', url: CONFIG.leetcodeUrl },
     ],
   },
+];
+
+export const PHOTO_DECORATIONS: PhotoDecoration[] = [
+  {
+    imageKey: 'decoClimbing',
+    alt: 'A person rock climbing up a steep cliff face.',
+    position: { top: '25%', left: '38%' },
+    rotation: 12,
+    size: { width: '24rem', height: '32rem' },
+  },
+  {
+    imageKey: 'decoCooking1',
+    alt: 'A person cooking in a modern, well-lit kitchen.',
+    position: { top: '70%', left: '35%' },
+    rotation: -8,
+    size: { width: '28rem', height: '22rem' },
+  },
+  {
+    imageKey: 'decoTravel',
+    alt: 'A person with a backpack looking out over a vast, green canyon.',
+    position: { top: '-5%', left: '35%' },
+    rotation: -5,
+    size: { width: '32rem', height: '24rem' },
+  },
+  {
+    imageKey: 'decoCooking2',
+    alt: 'A colorful array of fresh vegetables and spices on a table.',
+    position: { top: '60%', left: '78%' },
+    rotation: 15,
+    size: { width: '26rem', height: '34rem' },
+  },
+  {
+    imageKey: 'decoMountain',
+    alt: 'A stunning mountain range with a lake in the foreground.',
+    position: { top: '50%', left: '2%' },
+    rotation: -10,
+    size: { width: '30rem', height: '22rem' },
+  },
+   {
+    imageKey: 'decoASL',
+    alt: 'A hand making the American Sign Language sign for "I love you".',
+    position: { top: '-2%', left: '80%' },
+    rotation: 7,
+    size: { width: '24rem', height: '30rem' },
+  }
 ];

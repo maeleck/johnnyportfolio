@@ -2,6 +2,7 @@
 import React from 'react';
 import type { PortfolioSection } from '../types';
 import { PushPinIcon } from './Icons';
+import { CONFIG } from '../config';
 
 interface ContentCardProps {
   section: PortfolioSection;
@@ -33,7 +34,7 @@ export const ContentCard: React.FC<ContentCardProps> = ({ section, onClick, isAc
           <PushPinIcon />
           
           <div className="w-full h-1/2 flex-shrink-0">
-            <img src={section.imageUrl} alt={`${section.title} placeholder image`} className="w-full h-full object-cover"/>
+            <img src={CONFIG.IMAGES[section.imageKey]} alt={`${section.title} placeholder image`} className="w-full h-full object-cover"/>
           </div>
 
           <div className="p-8 flex flex-col flex-grow justify-between">
