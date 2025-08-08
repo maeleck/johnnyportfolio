@@ -1,4 +1,3 @@
-
 export const CONFIG = {
   name: "Bob Eve",
   portfolioTitle: "Bob Eve's Portfolio",
@@ -16,12 +15,17 @@ export const CONFIG = {
   languageAppUrl: "#",
   leetcodeUrl: "#",
 
-  // Centralized Image URLs - place your images in an 'assets' folder
+  // Centralized Image URLs.
+  // These now point to a local '/assets' folder.
+  // You must create an 'assets' folder in your project's root 
+  // and place your image files there.
   IMAGES: {
     about: '/assets/about.jpg',
     resume: '/assets/resume.png',
     biology: '/assets/biology.jpg',
     software: '/assets/software.png',
+    
+    // Decorative photos
     decoClimbing: '/assets/deco-climbing.jpg',
     decoCooking1: '/assets/deco-cooking1.jpg',
     decoTravel: '/assets/deco-travel.jpg',
