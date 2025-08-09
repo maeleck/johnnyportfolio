@@ -1,14 +1,14 @@
 
 export const CONFIG = {
-  name: "Bob Eve",
-  portfolioTitle: "Bob Eve's Portfolio",
+  name: "Phu Duong",
+  portfolioTitle: "Phu Duong's Portfolio",
   
   // Personal URLs - replace with your actual links
-  linkedInUrl: "#",
-  resumeUrl: "#", // Link to your resume PDF
+  linkedInUrl: "https://www.linkedin.com/in/phu-duong-02363129",
+  resumeUrl: "https://docs.google.com/document/d/1vrpQoU1SKKDaP6wivd1qypBlYgS7dE9X/edit?usp=sharing&ouid=102620166265867620787&rtpof=true&sd=true", // Link to your resume PDF
   googleScholarUrl: "#",
   pubMedUrl: "#",
-  githubUrl: "#",
+  githubUrl: "https://github.com/maeleck",
   
   // URLs for specific software/game projects
   clickerGame1Url: "#",
