@@ -5,16 +5,18 @@ export const CONFIG = {
   
   // Personal URLs - replace with your actual links
   linkedInUrl: "https://www.linkedin.com/in/phu-duong-02363129",
-  resumeUrl: "https://docs.google.com/document/d/1vrpQoU1SKKDaP6wivd1qypBlYgS7dE9X/edit?usp=sharing&ouid=102620166265867620787&rtpof=true&sd=true", // Link to your resume PDF
-  googleScholarUrl: "#",
+  resumeUrl: "https://drive.google.com/file/d/1UAcFcZOB4HpzvpQY76_Gr_r2jnvtggc0/view?usp=drive_link", // Link to your resume PDF
+  //googleScholarUrl: "#",
   pubMedUrl: "#",
   githubUrl: "https://github.com/maeleck",
   
   // URLs for specific software/game projects
-  clickerGame1Url: "#",
-  clickerGame2Url: "#",
+  clickerGame1Url: "https://aslquiz.vercel.app",
+  clickerGame2Url: "https://aslquiz.vercel.app",
+    clickerGame3Url: "https://biogenesis-game.vercel.app",
   languageAppUrl: "#",
   leetcodeUrl: "#",
+  
 
   // Centralized Image URLs.
   // IMPORTANT: Replace "bob-eve-dev/interactive-portfolio" with your
