@@ -142,6 +142,6 @@ export const PHOTO_DECORATIONS: PhotoDecoration[] = [
     alt: 'A hand making the American Sign Language sign for "I love you".',
     position: { top: '-2%', left: '80%' },
     rotation: 7,
-    size: { width: '24rem', height: '30rem' },
+    size: { width: '48rem', height: '30rem' },
   }
 ];
