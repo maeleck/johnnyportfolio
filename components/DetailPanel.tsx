@@ -35,25 +35,57 @@ export const DetailPanel: React.FC<DetailPanelProps> = ({ section, onClose }) =>
                 ))}
               </ul>
             )}
+            {section.details.projectCategories && (
+              <div className="space-y-6">
+                {section.details.projectCategories.map((category) => (
+                  <div key={category.title}>
+                    <h3 className="text-xl font-semibold mb-3 text-sky-400 border-b border-slate-600 pb-2">{category.title}</h3>
+                    {category.projects.length > 0 ? (
+                      <div className="space-y-4">
+                        {category.projects.map((project) => (
+                          <a
+                            key={project.name}
+                            href={project.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-start gap-3 p-3 rounded-md transition-all duration-300 group hover:bg-slate-700"
+                          >
+                            <ExternalLinkIcon className="h-5 w-5 text-sky-400 mt-1 flex-shrink-0"/>
+                            <div>
+                               <span className="font-medium text-slate-100 group-hover:text-white">{project.name}</span>
+                               <p className="text-sm text-slate-400 group-hover:text-slate-300">{project.description}</p>
+                            </div>
+                          </a>
+                        ))}
+                      </div>
+                    ) : (
+                      <p className="text-slate-400 italic text-sm px-3">Projects coming soon...</p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
           
-          <div className="flex-shrink-0 border-t border-slate-600 pt-4">
-            <h3 className="text-lg font-semibold mb-3 text-slate-200">Links</h3>
-            <div className="space-y-3">
-              {section.links.map((link, index) => (
-                <a
-                  key={index}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 bg-slate-700 hover:bg-sky-600 p-3 rounded-md transition-all duration-300 group"
-                >
-                  <ExternalLinkIcon className="h-5 w-5 text-sky-400 group-hover:text-white transition-colors"/>
-                  <span className="font-medium">{link.label}</span>
-                </a>
-              ))}
+          {section.links.length > 0 && (
+            <div className="flex-shrink-0 border-t border-slate-600 pt-4">
+              <h3 className="text-lg font-semibold mb-3 text-slate-200">Links</h3>
+              <div className="space-y-3">
+                {section.links.map((link, index) => (
+                  <a
+                    key={index}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 bg-slate-700 hover:bg-sky-600 p-3 rounded-md transition-all duration-300 group"
+                  >
+                    <ExternalLinkIcon className="h-5 w-5 text-sky-400 group-hover:text-white transition-colors"/>
+                    <span className="font-medium">{link.label}</span>
+                  </a>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       )}
     </div>

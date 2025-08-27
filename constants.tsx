@@ -57,50 +57,52 @@ export const SECTIONS: PortfolioSection[] = [
     details: {
       title: 'Research & Publications',
       description: "My research largely focuses on the epigenetic regulation of gene expression, particularly in the context of cellular regeneration and disease. Below is a selection of my contributions to the field.",
-      items: 
-[
-    "Duong, P., et al. (2024). CUT&Tag applied to zebrafish adult tail fins reveals a return of embryonic H3K4me3 patterns during regeneration. Epigenetics & Chromatin.",
-    "Duong, P., et al. (2023). Modulation of Schwann cell homeostasis by the BAP1 deubiquitinase. Glia.",
-    "Veneri, F. A., et al. (2022). A novel mouse model of CMT1B identifies hyperglycosylation as a new pathogenetic mechanism. Human Molecular Genetics.",
-    "Duong, P., et al. (2021). H3K27 demethylases are dispensable for activation of polycomb-regulated injury response genes in peripheral nerve. Journal of Biological Chemistry.",
-    "Sanchez, J. C., et al. (2019). High-resolution crystal structures of a myxobacterial phytochrome at cryo and room temperature. Structural Dynamics.",
-    "Duong, P., & Svaren, J. (2019). Charcot-Marie-Tooth Disease. Chromatin Signaling and Neurological Disorders.",
-    "Woitowich, N. C., et al. (2018). Structural basis for light control of cell development revealed by crystal structures of a myxobacterial phytochrome. IUCrJ.",
-    "Ma, K., et al. (2018). Polycomb repression regulates Schwann cell proliferation and axon regeneration after nerve injury. Glia.",
-    "Duncan, I. D., et al. (2017). A mutation in the Tubb4a gene leads to microtubule accumulation. Annals of Neurology.",
-    "Björling, A., et al. (2015). Ubiquitous structural signaling in bacterial phytochromes. J. Phys. Chem. Lett."
-]
-,
+      items: [
+        "Duong, P., et al. (2024). CUT&Tag applied to zebrafish adult tail fins reveals a return of embryonic H3K4me3 patterns during regeneration. Epigenetics & Chromatin.",
+        "Duong, P., et al. (2023). Modulation of Schwann cell homeostasis by the BAP1 deubiquitinase. Glia.",
+        "Veneri, F. A., et al. (2022). A novel mouse model of CMT1B identifies hyperglycosylation as a new pathogenetic mechanism. Human Molecular Genetics.",
+        "Duong, P., et al. (2021). H3K27 demethylases are dispensable for activation of polycomb-regulated injury response genes in peripheral nerve. Journal of Biological Chemistry.",
+        "Sanchez, J. C., et al. (2019). High-resolution crystal structures of a myxobacterial phytochrome at cryo and room temperature. Structural Dynamics.",
+        "Duong, P., & Svaren, J. (2019). Charcot-Marie-Tooth Disease. Chromatin Signaling and Neurological Disorders.",
+        "Woitowich, N. C., et al. (2018). Structural basis for light control of cell development revealed by crystal structures of a myxobacterial phytochrome. IUCrJ.",
+        "Ma, K., et al. (2018). Polycomb repression regulates Schwann cell proliferation and axon regeneration after nerve injury. Glia.",
+        "Duncan, I. D., et al. (2017). A mutation in the Tubb4a gene leads to microtubule accumulation. Annals of Neurology.",
+        "Björling, A., et al. (2015). Ubiquitous structural signaling in bacterial phytochromes. J. Phys. Chem. Lett."
+      ],
     },
     links: [
-     // { label: 'View on Google Scholar', url: CONFIG.googleScholarUrl },
       { label: 'Read on PubMed (WORK IN PROGRESS)', url: CONFIG.pubMedUrl },
     ],
   },
   {
     id: 'software',
     title: 'Software & Games',
-    summary: 'A collection of creative projects, including educational games for learning languages and my solutions to coding challenges.',
+    summary: 'A collection of creative projects, including educational games for learning languages and interactive web apps.',
     icon: <CodeBracketIcon className="w-12 h-12 text-amber-700" />,
     position: { top: '55%', left: '15%' },
     imageKey: 'software',
     details: {
       title: 'Apps & Creations',
       description: "I love building software that is both functional and fun. My projects often focus on education, accessibility, and interactive design. Here are a few things I've created.",
-      items: [
-        "ASL from nowhere: An interactive web game designed to make learning American Sign Language basics engaging (WIP, largely AI generated).",
-        "Japanese Quest: An interactive web game for mastering Japanese sign language, Hiragana, Katakana, and Kanji characters (WIP, largely AI generated).",
-        "Cosmic Incremental Game: A mobile-first web app concept for learning science through gamification (WIP, largely AI generated).",
-        "Leetcode Profile: A showcase of my problem-solving skills and solutions to various data structure and algorithm challenges (Just created).",
-      ],
+      projectCategories: [
+        {
+          title: 'Educational',
+          projects: [
+            { name: 'Handomics', url: CONFIG.handomicsUrl, description: 'An interactive web game designed to make learning American Sign Language basics engaging.' },
+            { name: 'Kanji Quest', url: CONFIG.kanjiQuestUrl, description: 'An interactive web game for mastering Japanese Hiragana, Katakana, and Kanji characters.' }
+          ]
+        },
+        { title: 'Productivity', projects: [] },
+        { title: 'Research', projects: [] },
+        {
+          title: 'Video Game',
+          projects: [
+            { name: 'Cosmic Incremental Game', url: CONFIG.clickerGame3Url, description: 'A mobile-first web app concept for learning science through gamification.' }
+          ]
+        }
+      ]
     },
-    links: [
-      { label: 'Explore on GitHub', url: CONFIG.githubUrl },
-      { label: 'ASL from nowhere', url: CONFIG.clickerGame1Url },
-      { label: 'Japanese Quest', url: CONFIG.clickerGame2Url },
-      { label: 'Cosmic Incremental Game', url: CONFIG.clickerGame3Url },
-      { label: 'View Leetcode Profile', url: CONFIG.leetcodeUrl },
-    ],
+    links: [],
   },
 ];
 

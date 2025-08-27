@@ -1,7 +1,18 @@
 
 export interface Link {
   label: string;
+  url:string;
+}
+
+export interface Project {
+  name: string;
   url: string;
+  description: string;
+}
+
+export interface ProjectCategory {
+  title: string;
+  projects: Project[];
 }
 
 export interface PortfolioSection {
@@ -17,6 +28,7 @@ export interface PortfolioSection {
     title: string;
     description: string;
     items?: string[];
+    projectCategories?: ProjectCategory[];
   };
   links: Link[];
   imageKey: string;

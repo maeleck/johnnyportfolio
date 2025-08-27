@@ -8,22 +8,18 @@ export const CONFIG = {
   resumeUrl: "https://drive.google.com/file/d/1UAcFcZOB4HpzvpQY76_Gr_r2jnvtggc0/view?usp=drive_link", // Link to your resume PDF
   //googleScholarUrl: "#",
   pubMedUrl: "#",
-  githubUrl: "https://github.com/maeleck",
   
   // URLs for specific software/game projects
-  clickerGame1Url: "https://aslquiz.vercel.app",
-  clickerGame2Url: "https://aslquiz.vercel.app",
-    clickerGame3Url: "https://biogenesis-game.vercel.app",
-  languageAppUrl: "#",
-  leetcodeUrl: "#",
-  
+  handomicsUrl: "https://handomics.org",
+  kanjiQuestUrl: "https://kanji-quest-app.web.app/",
+  clickerGame3Url: "https://biogenesis-game.vercel.app",
 
   // Centralized Image URLs.
   // IMPORTANT: Replace "bob-eve-dev/interactive-portfolio" with your
   // actual GitHub username and repository name.
   IMAGES: {
     about: 'https://raw.githubusercontent.com/maeleck/johnnyportfolio/refs/heads/main/assets/about.jpg',
-    resume: 'https://raw.githubusercontent.com/maeleck/johnnyportfolio/refs/heads/main//assets/resume.png',
+    resume: 'https://raw.githubusercontent.com/maeleck/johnnyportfolio/refs/heads/main/assets/resume.png',
     biology: 'https://raw.githubusercontent.com/maeleck/johnnyportfolio/refs/heads/main/assets/biology.jpg',
     software: 'https://raw.githubusercontent.com/maeleck/johnnyportfolio/refs/heads/main/assets/software.png',
     
