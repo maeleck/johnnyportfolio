@@ -1,58 +1,76 @@
----Upgraded to v5 OMOP
----INTERVAL set to 0 days
 
---------------------------------------------------------------------------------------------------------------
-WITH cteConditionTarget (condition_occurrence_id, person_id, condition_concept_id, condition_start_date, condition_end_date) AS
-(
-  SELECT co.condition_occurrence_id, co.person_id, co.condition_concept_id, co.condition_start_date,
-         COALESCE(NULLIF(co.condition_end_date,NULL), condition_start_date + INTERVAL '1 day') AS condition_end_date
-  FROM ${TARGET_CDM_SCHEMA}.condition_occurrence co
+WITH cteInitData AS (
+  SELECT 
+    person_id, 
+    -- FIX: Forces NULLs to 0 so they can be processed as standard unmapped concepts
+    COALESCE(condition_concept_id, 0) AS condition_concept_id, 
+    condition_start_date,
+    COALESCE(condition_end_date, condition_start_date + INTERVAL '1 day') AS condition_end_date
+  FROM staging_pace_controls_ehr.condition_occurrence
 ),
---------------------------------------------------------------------------------------------------------------
-cteEndDates (person_id, condition_concept_id, end_date) AS -- the magic
-(
-  SELECT person_id, condition_concept_id, event_date - INTERVAL '0 days' AS end_date -- unpad the end date
-  FROM
-  (
-    SELECT person_id, condition_concept_id, event_date, event_type, 
-    MAX(start_ordinal) OVER (PARTITION BY person_id, condition_concept_id ORDER BY event_date, event_type ROWS UNBOUNDED PRECEDING) AS start_ordinal, -- this pulls the current START down from the prior rows so that the NULLs from the END DATES will contain a value we can compare with 
-    ROW_NUMBER() OVER (PARTITION BY person_id, condition_concept_id ORDER BY event_date, event_type) AS overall_ord -- this re-numbers the inner UNION so all rows are numbered ordered by the event date
-    FROM
-    (
-      -- select the start dates, assigning a row number to each
-      SELECT person_id, condition_concept_id, condition_start_date AS event_date, -1 AS event_type, ROW_NUMBER() OVER (PARTITION BY person_id, condition_concept_id ORDER BY condition_start_date) AS start_ordinal
-      FROM cteConditionTarget
-    
-      UNION ALL
-    
-      -- pad the end dates by 0 to allow a grace period for overlapping ranges.
-      SELECT person_id, condition_concept_id, condition_end_date + INTERVAL '0 days', 1 AS event_type, NULL
-      FROM cteConditionTarget
-    ) RAWDATA
-  ) e
-  WHERE (2 * e.start_ordinal) - e.overall_ord = 0
+cteMaxEnd AS (
+  SELECT 
+    person_id, 
+    condition_concept_id, 
+    condition_start_date, 
+    condition_end_date,
+    MAX(condition_end_date) OVER (
+        PARTITION BY person_id, condition_concept_id 
+        ORDER BY condition_start_date, condition_end_date
+        ROWS BETWEEN UNBOUNDED PRECEDING AND 1 PRECEDING
+    ) AS max_prior_end_date
+  FROM cteInitData
 ),
---------------------------------------------------------------------------------------------------------------
-cteConditionEnds (person_id, condition_concept_id, condition_start_date, era_end_date) AS
-(
-SELECT
-        c.person_id, 
-  c.condition_concept_id,
-  c.condition_start_date, 
-  MIN(e.end_date) AS era_end_date
-FROM cteConditionTarget c
-JOIN cteEndDates e ON c.person_id = e.person_id AND c.condition_concept_id = e.condition_concept_id AND e.end_date >= c.condition_start_date
-GROUP BY 
----In Chris's original condition_era code, condition_occurrence_id is not in this table, but when at SAFTINet we ran through our data, we found that our condition_occurrence_count was not matching the count of all of the condition_occurrences in the condition_occurrence table. So to solve that and keep the records of the same person_id, condition_concept_id, and start_date from getting overlooked and put into one row, we grouped them by condition_occurrence_id as well to keep them from getting lumped together and overlooked.
----Chris DOES have this type of GROUP BY in his drug_era code
-        c.condition_occurrence_id,
-  c.person_id, 
-  c.condition_concept_id,
-  c.condition_start_date
+cteStartFlags AS (
+  SELECT 
+    person_id, 
+    condition_concept_id, 
+    condition_start_date, 
+    condition_end_date,
+    CASE 
+      WHEN max_prior_end_date IS NULL OR condition_start_date > max_prior_end_date THEN 1 
+      ELSE 0 
+    END AS is_start_of_era
+  FROM cteMaxEnd
+),
+cteEraGroups AS (
+  SELECT 
+    person_id, 
+    condition_concept_id, 
+    condition_start_date, 
+    condition_end_date,
+    SUM(is_start_of_era) OVER (
+        PARTITION BY person_id, condition_concept_id 
+        ORDER BY condition_start_date, condition_end_date
+        ROWS UNBOUNDED PRECEDING
+    ) AS era_group_id
+  FROM cteStartFlags
 )
-INSERT INTO ${TARGET_CDM_SCHEMA}.condition_era (condition_era_id, person_id, condition_concept_id, condition_era_start_date, condition_era_end_date, condition_occurrence_count)
-SELECT ROW_NUMBER() OVER (ORDER BY person_id) AS condition_era_id, person_id, condition_concept_id, MIN(condition_start_date) AS condition_era_start_date, era_end_date AS condition_era_end_date, COUNT(*) AS condition_occurrence_count
-FROM cteConditionEnds
-GROUP BY person_id, condition_concept_id, era_end_date
-ORDER BY person_id, condition_concept_id
-;
+INSERT INTO staging_pace_controls_ehr.condition_era (
+  condition_era_id, 
+  person_id, 
+  condition_concept_id, 
+  condition_era_start_date, 
+  condition_era_end_date, 
+  condition_occurrence_count
+)
+SELECT 
+  ROW_NUMBER() OVER (ORDER BY person_id) AS condition_era_id, 
+  person_id, 
+  condition_concept_id, 
+  MIN(condition_start_date) AS condition_era_start_date, 
+  MAX(condition_end_date) AS condition_era_end_date, 
+  COUNT(*) AS condition_occurrence_count
+FROM cteEraGroups
+GROUP BY person_id, condition_concept_id, era_group_id
+ORDER BY person_id, condition_concept_id;
+  
+  
+  SELECT 
+    condition_concept_id, 
+    COUNT(*) as row_count,
+    (CASE WHEN condition_concept_id IS NULL THEN 'Yes' ELSE 'No' END) as is_null
+FROM staging_pace_controls_ehr.condition_occurrence
+GROUP BY condition_concept_id
+ORDER BY row_count DESC
+LIMIT 10;
