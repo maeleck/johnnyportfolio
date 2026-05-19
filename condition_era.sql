@@ -65,12 +65,3 @@ FROM cteEraGroups
 GROUP BY person_id, condition_concept_id, era_group_id
 ORDER BY person_id, condition_concept_id;
   
-  
-  SELECT 
-    condition_concept_id, 
-    COUNT(*) as row_count,
-    (CASE WHEN condition_concept_id IS NULL THEN 'Yes' ELSE 'No' END) as is_null
-FROM staging_pace_controls_ehr.condition_occurrence
-GROUP BY condition_concept_id
-ORDER BY row_count DESC
-LIMIT 10;
